@@ -1,7 +1,7 @@
 {
-  "name": "login_system",
+  "name": "hospital-dashboard",
   "version": "1.0.0",
-  "description": "Login Application",
+  "description": "Hospital Dashboard",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -13,11 +13,11 @@
     "url": "http://www.ahm.elessawy.com"
   },
   "repository": {
-    "url": "git+https://github.com/ahmelessawy/LoginSystem.git",
+    "url": "git+https://github.com/ahmelessawy/Hospital-Dashboard.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/OmarElGabry/LoginSystem/issues"
+    "url": "https://github.com/OmarElGabry/Hospital-Dashboard/issues"
   },
   "license": "MIT",
   "dependencies": {
