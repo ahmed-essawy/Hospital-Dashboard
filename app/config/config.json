@@ -1,0 +1,17 @@
+{
+	"APPLICATION": {
+		"PORT": "3000",
+		"SESSIONSECRET": "JHK3435KH5KH43H5K6H54KH64K"
+	},
+	"MongoDB": {
+		"USERNAME": "essawy",
+		"PASSWORD": "essawy",
+		"HOST": "ds042417.mlab.com",
+		"PORT": "42417",
+		"NAME": "hospital-test"
+	},
+	"LOGIN": {
+		"SALT_WORK_FACTOR": 10,
+		"DEFAULT_USER_PICTURE": "/images/user.jpg"
+	}
+}

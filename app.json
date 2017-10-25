@@ -1,0 +1,14 @@
+{
+  "name": "login_system",
+  "description": "Login Application",
+  "repository": "https://github.com/ahmelessawy/LoginSystem",
+  "logo": "",
+  "keywords": [
+    "real-time",
+    "login",
+    "nodejs",
+    "express",
+    "mongoose",
+    "passport"
+  ]
+}
