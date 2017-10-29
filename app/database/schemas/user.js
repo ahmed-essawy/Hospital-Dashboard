@@ -3,9 +3,7 @@
 const Mongoose = require('mongoose');
 const config = require('../../config');
 
-const DEFAULT_USER_PICTURE = "/images/user.jpg";
-
-const UserSchema = new Mongoose.Schema({ // unique
+const UserSchema = new Mongoose.Schema({
     firstname: { type: String, required: true },
     lastname: { type: String },
     picture: { type: String, default: config.LOGIN.DEFAULT_USER_PICTURE },

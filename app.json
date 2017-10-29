@@ -1,7 +1,7 @@
 {
-  "name": "login_system",
-  "description": "Login Application",
-  "repository": "https://github.com/ahmelessawy/LoginSystem",
+  "name": "hospital-dashboard",
+  "description": "Hospital Dashboard",
+  "repository": "https://github.com/ahmelessawy/Hospital-Dashboard",
   "logo": "",
   "keywords": [
     "real-time",

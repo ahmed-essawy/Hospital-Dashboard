@@ -28,6 +28,8 @@ const init = function () {
 				login.validatePassword(password, function (err, isMatch) {
 					if (err) return done(err);
 					if (!isMatch) return done(null, false, { message: 'Incorrect username or password.' });
+					login._doc.success = true;
+					delete login._doc.password;
 
 					return done(null, login);
 				});
