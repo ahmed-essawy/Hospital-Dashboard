@@ -22,6 +22,7 @@ module.exports = {
 	Mongoose,
 	Models: {
 		Login: require('./schemas/login.js'),
-		User: require('./schemas/user.js')
+		User: require('./schemas/user.js'),
+		Doctor: require('./schemas/doctor.js')
 	}
 };

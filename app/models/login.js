@@ -2,6 +2,7 @@
 
 const loginModel = require('../database').Models.Login;
 const userModel = require('../database').Models.User;
+const doctorModel = require('../database').Models.Doctor;
 
 const create = (data, callback) => { new loginModel(data).save(callback) }
 
@@ -42,6 +43,15 @@ const isAuthenticated = (req, res, next) => {
 	else res.redirect('/');
 };
 
+const isDoctor = (req, res, next) => {
+	doctorModel.findOne({ loginId: req.doctor._id }, (err, doctor) => {
+		if (err) throw err;
+		if (doctor && doctor.role === 'doctor') next();
+		else if (!doctor && req.doctor.isCompleted) res.redirect('/#' + req.doctor.role);
+		else res.status(401).end();
+	});
+};
+
 module.exports = {
 	create,
 	find,
@@ -50,5 +60,6 @@ module.exports = {
 	updateById,
 	removeById,
 	isUser,
-	isAuthenticated
+	isAuthenticated,
+	isDoctor
 };
