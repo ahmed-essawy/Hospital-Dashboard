@@ -23,6 +23,7 @@ module.exports = {
 	Models: {
 		Login: require('./schemas/login.js'),
 		User: require('./schemas/user.js'),
-		Doctor: require('./schemas/doctor.js')
+		Doctor: require('./schemas/doctor.js'),
+		Hospital: require('./schemas/hospital.js')
 	}
 };

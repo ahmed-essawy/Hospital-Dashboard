@@ -13,7 +13,8 @@
 	"LOGIN": {
 		"SALT_WORK_FACTOR": 10,
 		"DEFAULT_USER_PICTURE": "/images/user.jpg",
-		"DEFAULT_DOCTOR_PICTURE": "/images/doctor.jpg"
+		"DEFAULT_DOCTOR_PICTURE": "/images/doctor.jpg",
+		"DEFAULT_HOSPITAL_PICTURE": "/images/hospital.jpg"		
 	},
 	"JWT": {
 		"SECRET": "JHK3435KH5KH43H5K6H54KH64K",

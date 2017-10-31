@@ -3,6 +3,8 @@
 const loginModel = require('../database').Models.Login;
 const userModel = require('../database').Models.User;
 const doctorModel = require('../database').Models.Doctor;
+const hospitalModel = require('../database').Models.Hospital;
+
 
 const create = (data, callback) => { new loginModel(data).save(callback) }
 
@@ -52,6 +54,15 @@ const isDoctor = (req, res, next) => {
 	});
 };
 
+const isHospital = (req, res, next) => {
+	hospitalModel.findOne({ loginId: req.hospital._id }, (err, hospital) => {
+		if (err) throw err;
+		if (hospital && hospital.role === 'hospital') next();
+		else if (!hospital && req.hospital.isCompleted) res.redirect('/#' + req.hospital.role);
+		else res.status(401).end();
+	});
+};
+
 module.exports = {
 	create,
 	find,
@@ -61,5 +72,6 @@ module.exports = {
 	removeById,
 	isUser,
 	isAuthenticated,
-	isDoctor
+	isDoctor,
+	isHospital
 };

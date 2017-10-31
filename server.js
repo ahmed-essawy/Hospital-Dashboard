@@ -31,6 +31,7 @@ app.use(cors())
 app.use('/authenticate', routes.login);
 app.use('/api/user', routes.user);
 app.use('/api/doctor', routes.doctor);
+app.use('/api/hospital', routes.hospital);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
