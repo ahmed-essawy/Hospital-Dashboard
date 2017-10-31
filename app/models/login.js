@@ -40,27 +40,27 @@ const isUser = (req, res, next) => {
 	});
 };
 
-const isAuthenticated = (req, res, next) => {
-	if (req.isAuthenticated()) next();
-	else res.redirect('/');
-};
-
 const isDoctor = (req, res, next) => {
-	doctorModel.findOne({ loginId: req.doctor._id }, (err, doctor) => {
+	doctorModel.findOne({ loginId: req.user._id }, (err, doctor) => {
 		if (err) throw err;
 		if (doctor && doctor.role === 'doctor') next();
-		else if (!doctor && req.doctor.isCompleted) res.redirect('/#' + req.doctor.role);
+		else if (!doctor && req.user.isCompleted) res.redirect('/#' + req.user.role);
 		else res.status(401).end();
 	});
 };
 
 const isHospital = (req, res, next) => {
-	hospitalModel.findOne({ loginId: req.hospital._id }, (err, hospital) => {
+	hospitalModel.findOne({ loginId: req.user._id }, (err, hospital) => {
 		if (err) throw err;
 		if (hospital && hospital.role === 'hospital') next();
-		else if (!hospital && req.hospital.isCompleted) res.redirect('/#' + req.hospital.role);
+		else if (!hospital && req.user.isCompleted) res.redirect('/#' + req.user.role);
 		else res.status(401).end();
 	});
+};
+
+const isAuthenticated = (req, res, next) => {
+	if (req.isAuthenticated()) next();
+	else res.redirect('/');
 };
 
 module.exports = {
@@ -71,7 +71,7 @@ module.exports = {
 	updateById,
 	removeById,
 	isUser,
-	isAuthenticated,
 	isDoctor,
-	isHospital
+	isHospital,
+	isAuthenticated
 };
