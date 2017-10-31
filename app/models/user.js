@@ -13,7 +13,6 @@ const findById = (id, callback) => { model.findById(id, callback) }
 const updateById = (id, newData, callback) => {
 	findById(id, (err, data) => {
 		if (err) throw err;
-		console.log(data);
 		for (var key in data)
 			if (data.hasOwnProperty(key))
 				data[key] = newData[key];
