@@ -6,11 +6,12 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService {
+  private endPoint = "authenticate/";
 
   constructor(private http: HttpService) { }
 
   login(user: { username: string, password: string, remember: boolean }): Observable<any> {
-    return this.http.post('/authenticate/login', user)
+    return this.http.post(this.endPoint + 'login', user)
       .map((response: Response) => {
         // login successful if there's a id in the response
         let responseObj = response.json();
@@ -20,7 +21,7 @@ export class AuthenticationService {
   }
 
   signup(user: { username: string, email: string, password1: string, password2: string, role: string }): Observable<any> {
-    return this.http.post('/authenticate/register', user)
+    return this.http.post(this.endPoint + 'register', user)
       .map((response: Response) => {
         // login successful if there's a id in the response
         let responseObj = response.json();
@@ -29,9 +30,11 @@ export class AuthenticationService {
       });
   }
 
-  logout(): void {
-    this.http.get('/authenticate/logout');
-    // clear id remove user from local storage to log user out
-    localStorage.removeItem('loggedIn');
+  logout(): Observable<any> {
+    return this.http.get(this.endPoint + 'logout')
+      .map((response: Response) => {
+        localStorage.removeItem('loggedIn');
+        return response.json();
+      });
   }
 }

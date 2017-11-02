@@ -53,9 +53,7 @@ router.post('/register', function (req, res, next) {
 router.get('/logout', function (req, res, next) {
 	req.logout();
 	req.session = null;
-	res.redirect('/');
+	res.json({ success: true });
 });
-
-router.use((req, res) => res.redirect('/404'));
 
 module.exports = router;

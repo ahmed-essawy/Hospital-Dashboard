@@ -5,12 +5,13 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class HttpService {
+  private serverURL = "http://127.0.0.1:3000/"
 
   constructor(private http: Http) { }
-  post(url, data) {
-    return this.http.post(url, data);
+  post(endPoint, data) {
+    return this.http.post(this.serverURL + endPoint, data);
   }
-  get(url) {
-    return this.http.get(url);
+  get(endPoint) {
+    return this.http.get(this.serverURL + endPoint);
   }
 }

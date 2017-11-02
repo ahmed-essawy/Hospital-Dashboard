@@ -1,10 +1,14 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
     selector: 'ap-sidebar',
     templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent implements AfterViewInit {
+
+    constructor(public router: Router, private authenticationService: AuthenticationService) { }
 
     ngAfterViewInit() {
         $(function () {
@@ -43,5 +47,15 @@ export class SidebarComponent implements AfterViewInit {
 
             (<any>$('#sidebarnav')).metisMenu();
         });
+    }
+
+    logout() {
+        this.authenticationService.logout()
+            .subscribe(result => {
+                if (result.success) this.router.navigate(['/login']);
+                else {
+                    console.log(result);
+                }
+            });
     }
 }

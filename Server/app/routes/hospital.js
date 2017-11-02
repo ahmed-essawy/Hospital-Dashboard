@@ -3,15 +3,13 @@
 const router = require('express').Router();
 
 const Login = require('../models/login');
-const Doctor = require('../models/doctor');
+const Hospital = require('../models/hospital');
 
 router.get('/', function (req, res) {
-	Login.find({}, (err, doctors) => {
+	Login.find({}, (err, hospitals) => {
 		if (err) throw err;
-		res.json(doctors);
+		res.json(hospitals);
 	})
 });
-
-router.use((req, res) => res.redirect('/404'));
 
 module.exports = router;

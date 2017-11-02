@@ -12,7 +12,7 @@ const hospital = (req, res, next) => isAuthenticated(req, res, next, hospitalReq
 
 const isAuthenticated = (req, res, next, type) => {
 	if (req.isAuthenticated()) type(req, res, next);
-	else res.redirect('/login');
+	else res.status(401).end();
 }
 
 module.exports = {
