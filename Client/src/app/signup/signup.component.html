@@ -27,7 +27,10 @@
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <input class="form-control" [(ngModel)]="user.username" name="username" type="text" placeholder="Username" required>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">@</span>
+              <input class="form-control" [(ngModel)]="user.username" name="username" type="text" placeholder=" Username" required>
+            </div>
           </div>
         </div>
         <div class="form-group ">
@@ -48,7 +51,13 @@
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <input class="form-control" type="file" #fileupload (change)="user.picture = fileupload.files[0]">
+            <fieldset class="form-group">
+              <label>Profile Picture</label>
+              <label class="custom-file d-block">
+                <input class="custom-file-input" type="file" #fileupload (change)="user.picture = fileupload.files[0]">
+                <span class="custom-file-control"></span>
+              </label>
+            </fieldset>
           </div>
         </div>
         <div class="form-group row">
