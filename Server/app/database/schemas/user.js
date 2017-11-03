@@ -10,6 +10,11 @@ const UserSchema = new Mongoose.Schema({
     loginId: { type: Mongoose.Schema.Types.ObjectId, required: true, index: { unique: true } }
 });
 
+UserSchema.pre('save', function (next) {
+    if (!this.picture || this.picture === "null" || this.picture === "undefined" || this.picture === "") this.picture = config.LOGIN.DEFAULT_USER_PICTURE;
+    next();
+});
+
 const userModel = Mongoose.model('users', UserSchema);
 
 module.exports = userModel;

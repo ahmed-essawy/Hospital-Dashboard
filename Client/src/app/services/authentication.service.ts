@@ -15,17 +15,23 @@ export class AuthenticationService {
       .map((response: Response) => {
         // login successful if there's a id in the response
         let responseObj = response.json();
-        localStorage.setItem('loggedIn', responseObj.success);
+        if (responseObj.success) {
+          localStorage.setItem('account', JSON.stringify(responseObj.account));
+          return responseObj.account;
+        }
         return responseObj;
       });
   }
 
-  signup(user: { username: string, email: string, password1: string, password2: string, role: string }): Observable<any> {
+  signup(user: FormData): Observable<any> {
     return this.http.post(this.endPoint + 'register', user)
       .map((response: Response) => {
         // login successful if there's a id in the response
         let responseObj = response.json();
-        localStorage.setItem('loggedIn', responseObj.success);
+        if (responseObj.success) {
+          localStorage.setItem('account', JSON.stringify(responseObj.account));
+          return responseObj.account;
+        }
         return responseObj;
       });
   }
@@ -33,7 +39,7 @@ export class AuthenticationService {
   logout(): Observable<any> {
     return this.http.get(this.endPoint + 'logout')
       .map((response: Response) => {
-        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('account');
         return response.json();
       });
   }

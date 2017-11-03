@@ -8,8 +8,7 @@ const LoginSchema = new Mongoose.Schema({
     email: { type: String, required: true, index: { unique: true } },
     username: { type: String, required: true, index: { unique: true } },
     password: { type: String, default: null },
-    role: { type: String, default: 'user' },
-    isCompleted: { type: Boolean, default: false }
+    role: { type: String, default: 'user' }
 });
 
 LoginSchema.pre('save', function (next) {

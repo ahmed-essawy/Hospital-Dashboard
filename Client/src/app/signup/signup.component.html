@@ -5,6 +5,28 @@
         <h3 class="box-title m-b-20">Sign Up</h3>
         <div class="form-group">
           <div class="col-xs-12">
+            <select class="form-control" [(ngModel)]="user.role" name="role">
+              <option value="user">User</option>
+              <option value="doctor">Doctor</option>
+              <option value="hospital">Hospital</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12">
+            <input *ngIf="user.role!== 'hospital'" class="form-control" [(ngModel)]="user.firstname" name="firstname" type="text" placeholder="First name"
+              required>
+            <input *ngIf="user.role === 'hospital'" class="form-control" [(ngModel)]="user.firstname" name="firstname" type="text" placeholder="Name"
+              required>
+          </div>
+        </div>
+        <div *ngIf="user.role !== 'hospital'" class="form-group">
+          <div class="col-xs-12">
+            <input class="form-control" [(ngModel)]="user.lastname" name="lastname" type="text" placeholder="Last name" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12">
             <input class="form-control" [(ngModel)]="user.username" name="username" type="text" placeholder="Username" required>
           </div>
         </div>
@@ -26,11 +48,7 @@
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <select class="form-control" [(ngModel)]="user.role" name="role">
-              <option value="user">User</option>
-              <option value="doctor">Doctor</option>
-              <option value="hospital">Hospital</option>
-            </select>
+            <input class="form-control" type="file" #fileupload (change)="user.picture = fileupload.files[0]">
           </div>
         </div>
         <div class="form-group row">

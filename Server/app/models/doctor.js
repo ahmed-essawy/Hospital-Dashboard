@@ -10,6 +10,8 @@ const findOne = (data, callback) => { model.findOne(data, callback) }
 
 const findById = (id, callback) => { model.findById(id, callback) }
 
+const findByLoginId = (id, callback) => { findOne({ loginId: id }, callback) }
+
 const updateById = (id, newData, callback) => {
 	findById(id, (err, data) => {
 		if (err) throw err;
@@ -32,6 +34,7 @@ module.exports = {
 	find,
 	findOne,
 	findById,
+	findByLoginId,
 	updateById,
 	removeById
 };

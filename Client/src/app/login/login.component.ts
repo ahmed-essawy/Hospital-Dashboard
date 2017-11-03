@@ -34,10 +34,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     login() {
         this.authenticationService.login(this.user)
             .subscribe(result => {
-                if (result.success) this.router.navigate(['/']);
-                else {
-                    console.log(result);
-                }
+                if (result) this.router.navigate(['/']);
             });
     }
 

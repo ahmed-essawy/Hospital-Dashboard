@@ -1,14 +1,24 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
     selector: 'ap-sidebar',
     templateUrl: './sidebar.component.html'
 })
-export class SidebarComponent implements AfterViewInit {
+export class SidebarComponent implements OnInit, AfterViewInit {
+    private user: { name: string, picture: any };
 
-    constructor(public router: Router, private authenticationService: AuthenticationService) { }
+    constructor(public router: Router, public domSanitizer: DomSanitizer, private authenticationService: AuthenticationService) { }
+
+    ngOnInit() {
+        this.user = { name: "", picture: "" };
+        const user = JSON.parse(localStorage.getItem('account'));
+        if (user.role === 'hospital') this.user.name = user.name;
+        else this.user.name = `${user.firstname} ${user.lastname}`;
+        this.user.picture = this.domSanitizer.bypassSecurityTrustUrl(user.picture);
+    }
 
     ngAfterViewInit() {
         $(function () {

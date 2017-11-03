@@ -12,6 +12,11 @@ const HospitalSchema = new Mongoose.Schema({
     services: { type: [String] }
 });
 
+HospitalSchema.pre('save', function (next) {
+    if (!this.picture || this.picture === "null" || this.picture === "undefined" || this.picture === "") this.picture = config.LOGIN.DEFAULT_HOSPITAL_PICTURE;
+    next();
+});
+
 const hospitalModel = Mongoose.model('hospitals', HospitalSchema);
 
 module.exports = hospitalModel;

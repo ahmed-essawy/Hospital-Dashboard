@@ -8,7 +8,7 @@
     <div class="user-profile">
       <!-- User profile image -->
       <div class="profile-img">
-        <img src="assets/images/users/profile.png" alt="user" />
+        <img [src]="user.picture" alt="{{user.name}}" />
         <!-- this is blinking heartbit-->
         <div class="notify setpos">
           <span class="heartbit"></span>
@@ -17,7 +17,7 @@
       </div>
       <!-- User profile text-->
       <div class="profile-text">
-        <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Markarn Doe</a>
+        <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{user.name}}</a>
         <div class="dropdown-menu animated flipInY">
           <!-- text-->
           <a href="#" class="dropdown-item">

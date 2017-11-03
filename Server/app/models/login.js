@@ -35,7 +35,6 @@ const isUser = (req, res, next) => {
 	userModel.findOne({ loginId: req.user._id }, (err, user) => {
 		if (err) throw err;
 		if (user && user.role === 'user') next();
-		else if (!user && req.user.isCompleted) res.redirect('/#' + req.user.role);
 		else res.status(401).end();
 	});
 };
@@ -44,7 +43,6 @@ const isDoctor = (req, res, next) => {
 	doctorModel.findOne({ loginId: req.user._id }, (err, doctor) => {
 		if (err) throw err;
 		if (doctor && doctor.role === 'doctor') next();
-		else if (!doctor && req.user.isCompleted) res.redirect('/#' + req.user.role);
 		else res.status(401).end();
 	});
 };
@@ -53,7 +51,6 @@ const isHospital = (req, res, next) => {
 	hospitalModel.findOne({ loginId: req.user._id }, (err, hospital) => {
 		if (err) throw err;
 		if (hospital && hospital.role === 'hospital') next();
-		else if (!hospital && req.user.isCompleted) res.redirect('/#' + req.user.role);
 		else res.status(401).end();
 	});
 };

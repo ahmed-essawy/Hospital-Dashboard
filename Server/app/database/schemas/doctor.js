@@ -13,7 +13,11 @@ const DoctorSchema = new Mongoose.Schema({
     ratings: [{ userId: { type: Mongoose.Schema.Types.ObjectId }, rating: { type: Number } }]
 });
 
+DoctorSchema.pre('save', function (next) {
+    if (!this.picture || this.picture === "null" || this.picture === "undefined" || this.picture === "") this.picture = config.LOGIN.DEFAULT_DOCTOR_PICTURE;
+    next();
+});
+
 const doctorModel = Mongoose.model('doctors', DoctorSchema);
 
 module.exports = doctorModel;
-

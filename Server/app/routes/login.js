@@ -3,8 +3,13 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const formidable = require('formidable');
+const fs = require('fs');
 
 const Login = require('../models/login');
+const User = require('../models/user');
+const Doctor = require('../models/doctor');
+const Hospital = require('../models/hospital');
 
 const authenticate = function (req, res, next) {
 	passport.authenticate('local', function (err, user, info) {
@@ -21,33 +26,44 @@ const authenticate = function (req, res, next) {
 router.post('/login', authenticate);
 
 router.post('/register', function (req, res, next) {
-	const account = {
-		'email': req.body.email,
-		'username': req.body.username,
-		'pass1': req.body.password1,
-		'pass2': req.body.password2,
-		'role': req.body.role,
-	}
-	if (account.email === '' || account.username === '' || account.pass1 === '' || account.pass2 === '' || account.role === '')
-		res.json({ "success": false, "message": "Missing credentials." });
-	else if (account.pass1 !== account.pass2) {
-		account.pass2 = null;
-		res.json({ "success": false, "message": "Password not matched.", "account": account });
-	}
-	else {
-		const credentials = { 'email': account.email, 'username': account.username, 'password': account.pass1, 'role': account.role };
-		Login.findOne({ $or: [{ 'email': new RegExp('^' + credentials.email + '$', 'i') }, { 'username': new RegExp('^' + credentials.username + '$', 'i') }] }, function (err, login) {
-			if (err) throw err;
-			if (login) res.json({ "success": false, "message": "Email or Username already exists." });
-			else {
-				Login.create(credentials, function (err2, newLogin) {
-					if (err2) throw err2;
-					req.body.password = account.pass1;
-					next();
-				});
-			}
-		});
-	}
+	const form = new formidable.IncomingForm(), account = {};
+	form.parse(req);
+	form.on('field', function (name, value) {
+		account[name] = value;
+	});
+	form.on('file', function (field, file) {
+		account.picture = `data:${file.type};base64, ${new Buffer(fs.readFileSync(file.path)).toString("base64")}`;
+	});
+	form.on('end', function () {
+		if (account.username === '' || account.email === '' || account.password1 === '' || account.password2 === '' || account.role === '' || account.firstname === '' || (account.role !== 'hospital' && account.lastname === ''))
+			res.json({ "success": false, "message": "Missing credentials." });
+		else if (account.password1 !== account.password2) {
+			account.password2 = null;
+			res.json({ "success": false, "message": "Password not matched.", "account": account });
+		}
+		else {
+			const credentials = { 'email': account.email, 'username': account.username, 'password': account.password1, 'role': account.role };
+			Login.findOne({ $or: [{ 'email': new RegExp('^' + credentials.email + '$', 'i') }, { 'username': new RegExp('^' + credentials.username + '$', 'i') }] }, function (err, login) {
+				if (err) throw err;
+				if (login) res.json({ "success": false, "message": "Email or Username already exists." });
+				else {
+					Login.create(credentials, function (err2, newLogin) {
+						if (err2) throw err2;
+						let table = User;
+						if (newLogin.role === 'doctor') table = Doctor;
+						else if (newLogin.role === 'hospital') table = Hospital;
+						const accountInfo = { name: account.firstname, firstname: account.firstname, lastname: account.lastname, picture: account.picture, loginId: newLogin._id };
+						table.create(accountInfo, function (err3, newAccount) {
+							if (err3) throw err3;
+							req.body.username = account.username;
+							req.body.password = account.password1;
+							next();
+						});
+					});
+				}
+			});
+		}
+	})
 }, authenticate);
 
 router.get('/logout', function (req, res, next) {
