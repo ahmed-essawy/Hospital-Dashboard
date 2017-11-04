@@ -8,10 +8,13 @@ export class HttpService {
   private serverURL = "http://127.0.0.1:3000/"
 
   constructor(private http: Http) { }
-  post(endPoint, data) {
-    return this.http.post(this.serverURL + endPoint, data);
+  post(endPoint, data): Observable<any> {
+    return this.http.post(this.serverURL + endPoint, data).map((response: Response) => response.json());
   }
-  get(endPoint) {
-    return this.http.get(this.serverURL + endPoint);
+  get(endPoint): Observable<any> {
+    return this.http.get(this.serverURL + endPoint).map((response: Response) => response.json());
+  }
+  put(endPoint, data): Observable<any> {
+    return this.http.put(this.serverURL + endPoint, data).map((response: Response) => response.json());
   }
 }

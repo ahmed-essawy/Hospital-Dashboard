@@ -12,35 +12,33 @@ export class AuthenticationService {
 
   login(user: { username: string, password: string, remember: boolean }): Observable<any> {
     return this.http.post(this.endPoint + 'login', user)
-      .map((response: Response) => {
+      .map((response) => {
         // login successful if there's a id in the response
-        let responseObj = response.json();
-        if (responseObj.success) {
-          localStorage.setItem('account', JSON.stringify(responseObj.account));
-          return responseObj.account;
+        if (response.success) {
+          localStorage.setItem('account', JSON.stringify(response.account));
+          return response.account;
         }
-        return responseObj;
+        return response;
       });
   }
 
   signup(user: FormData): Observable<any> {
     return this.http.post(this.endPoint + 'register', user)
-      .map((response: Response) => {
+      .map((response) => {
         // login successful if there's a id in the response
-        let responseObj = response.json();
-        if (responseObj.success) {
-          localStorage.setItem('account', JSON.stringify(responseObj.account));
-          return responseObj.account;
+        if (response.success) {
+          localStorage.setItem('account', JSON.stringify(response.account));
+          return response.account;
         }
-        return responseObj;
+        return response;
       });
   }
 
   logout(): Observable<any> {
     return this.http.get(this.endPoint + 'logout')
-      .map((response: Response) => {
+      .map((response) => {
         localStorage.removeItem('account');
-        return response.json();
+        return response;
       });
   }
 }
