@@ -20,7 +20,7 @@
         <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{user.name}}</a>
         <div class="dropdown-menu animated flipInY">
           <!-- text-->
-          <a href="#" class="dropdown-item">
+          <a routerLink="/profile" [routerLinkActive]="['router-link-active']" class="dropdown-item">
             <i class="ti-user"></i> My Profile</a>
           <!-- text-->
           <a href="#" class="dropdown-item">
