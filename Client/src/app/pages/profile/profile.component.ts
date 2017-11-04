@@ -16,7 +16,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     hide = false;
     uploadPhoto = false;
     showEdit = false;
-
     constructor(public router: Router, public domSanitizer: DomSanitizer, private http: HttpService) { }
 
     ngOnInit() {
@@ -29,23 +28,32 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     }
     uploadPicture(files) {
         this.user.picture = files[0];
-        this.picture = files; // bug
+        var reader = new FileReader();
+        reader.readAsDataURL(files[0]);
+        reader.onload = (event: Event) => this.picture = this.domSanitizer.bypassSecurityTrustUrl(event.target['result']);
+
     }
     edit() {
         this.readOnly = false;
         this.hide = true;
-        this.uploadPhoto = true;
         this.showEdit = false;
+        this.uploadPhoto = true;
     }
     save() {
-        this.http.put('api/user/profile', this.user)
+        let formData: FormData = new FormData();
+        for (var property in this.user) {
+            if (this.user.hasOwnProperty(property)) {
+                formData.append(property, this.user[property]);
+            }
+        }
+        this.http.put('api/user/profile', formData)
             .subscribe(result => {
                 if (result.success) {
                     this.readOnly = true;
                     this.hide = true;
                     this.uploadPhoto = false;
                     this.showEdit = true;
-                    localStorage.setItem('account', JSON.stringify(this.user));
+                    localStorage.setItem('account', JSON.stringify(result.account));
                 }
             });;
 

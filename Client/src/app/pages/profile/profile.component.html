@@ -1,12 +1,16 @@
 <form class="form-horizontal form-material">
   <div class="form-group row">
-    <label for="example-photo-input" class="col-md-2 col-form-label">Photo</label>
-    <div class="col-md-10">
+    <div class="col-md-12 text-center">
       <img class="img-circle img-thumbnail" [src]="picture">
     </div>
-    <div class="col-md-10" *ngIf="uploadPhoto">
-      <input class="form-control" type="file" #fileupload (change)="uploadPicture(fileupload.value)">
-    </div>
+  </div>
+  <div class="form-group row" *ngIf="uploadPhoto">
+    <fieldset class="col-md-12">
+      <label class="custom-file d-block">
+        <input class="custom-file-input" type="file" #fileupload (change)="uploadPicture(fileupload.files)">
+        <span class="custom-file-control"></span>
+      </label>
+    </fieldset>
   </div>
   <div *ngIf="user.role !== 'hospital' else hospitalName" class="form-group row">
     <label for="example-firstName-input" class="col-md-2 col-form-label">First Name</label>
@@ -50,19 +54,19 @@
     <div class="form-group row">
       <label for="example-password-input" class="col-md-2 col-form-label">Old Password</label>
       <div class="col-md-10">
-        <input class="form-control" type="password" id="example-password-input" name="password">
+        <input class="form-control" type="password" id="example-password-input" [(ngModel)]="user.password" name="password">
       </div>
     </div>
     <div class="form-group row">
       <label for="example-password1-input" class="col-md-2 col-form-label">New Password</label>
       <div class="col-md-10">
-        <input class="form-control" type="password" id="example-password1-input" name="password1">
+        <input class="form-control" type="password" id="example-password1-input" [(ngModel)]="user.password1" name="password1">
       </div>
     </div>
     <div class="form-group row">
       <label for="example-password2-input" class="col-md-2 col-form-label">Confirm New Password</label>
       <div class="col-md-10">
-        <input class="form-control" type="password" id="example-password2-input" name="password2">
+        <input class="form-control" type="password" id="example-password2-input" [(ngModel)]="user.password2" name="password2">
       </div>
     </div>
     <div class="form-group text-center p-b-20">
