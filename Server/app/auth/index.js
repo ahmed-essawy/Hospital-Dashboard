@@ -50,6 +50,7 @@ const init = function () {
 							}
 							login._doc.success = true;
 							account.picture = response.picture;
+							account['accountId'] = response._id;
 							account.token = "";
 							login._doc.account = account;
 						}

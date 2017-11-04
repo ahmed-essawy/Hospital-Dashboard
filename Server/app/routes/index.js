@@ -11,8 +11,9 @@ const hospital = (req, res, next) => isAuthenticated(req, res, next, hospitalReq
 
 
 const isAuthenticated = (req, res, next, type) => {
-	if (req.isAuthenticated()) type(req, res, next);
-	else res.status(401).end();
+	type(req, res, next);
+	// if (req.isAuthenticated()) type(req, res, next);
+	// else res.status(401).end();
 }
 
 module.exports = {

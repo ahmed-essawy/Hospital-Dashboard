@@ -17,9 +17,9 @@ const findById = (id, callback) => { loginModel.findById(id, callback) }
 const updateById = (id, newData, callback) => {
 	findById(id, (err, data) => {
 		if (err) throw err;
-		for (var key in data)
-			if (data.hasOwnProperty(key))
-				data[key] = newData[key];
+		for (var i = 0, keys = Object.keys(newData); i < keys.length; ++i)
+			if (data._doc[keys[i]] && newData[keys[i]])
+				data[keys[i]] = newData[keys[i]];
 		data.save(callback);
 	})
 }
