@@ -13,11 +13,11 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     constructor(public router: Router, public domSanitizer: DomSanitizer, private authenticationService: AuthenticationService) { }
 
     ngOnInit() {
-        this.user = { name: "", picture: "" };
         const user = JSON.parse(localStorage.getItem('account'));
-        if (user.role === 'hospital') this.user.name = user.name;
-        else this.user.name = `${user.firstname} ${user.lastname}`;
-        this.user.picture = this.domSanitizer.bypassSecurityTrustUrl(user.picture);
+        this.user = {
+            name: user.name,
+            picture: this.domSanitizer.bypassSecurityTrustUrl(user.picture)
+        };
     }
 
     ngAfterViewInit() {

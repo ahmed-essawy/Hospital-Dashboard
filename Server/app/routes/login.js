@@ -35,30 +35,26 @@ router.post('/register', function (req, res, next) {
 		account.picture = `data:${file.type};base64, ${new Buffer(fs.readFileSync(file.path)).toString("base64")}`;
 	});
 	form.on('end', function () {
-		if (account.username === '' || account.email === '' || account.password1 === '' || account.password2 === '' || account.role === '' || account.firstname === '' || (account.role !== 'hospital' && account.lastname === ''))
+		if (account.username === '' || account.email === '' || account.password1 === '' || account.password2 === '' || account.role === '' || account.firstname === '' || (account.role !== 'hospitals' && account.lastname === ''))
 			res.json({ "success": false, "message": "Missing credentials." });
 		else if (account.password1 !== account.password2) {
 			account.password2 = null;
 			res.json({ "success": false, "message": "Password not matched.", "account": account });
 		}
 		else {
-			const credentials = { 'email': account.email, 'username': account.username, 'password': account.password1, 'role': account.role };
-			Login.findOne({ $or: [{ 'email': new RegExp('^' + credentials.email + '$', 'i') }, { 'username': new RegExp('^' + credentials.username + '$', 'i') }] }, function (err, login) {
+			account.password = account.password1;
+			Login.findOne({ $or: [{ 'email': new RegExp('^' + account.email + '$', 'i') }, { 'username': new RegExp('^' + account.username + '$', 'i') }] }, function (err, login) {
 				if (err) throw err;
 				if (login) res.json({ "success": false, "message": "Email or Username already exists." });
 				else {
-					Login.create(credentials, function (err2, newLogin) {
+					Login.create(account, function (err2, newLogin, changed) {
 						if (err2) throw err2;
-						let table = User;
-						if (newLogin.role === 'doctor') table = Doctor;
-						else if (newLogin.role === 'hospital') table = Hospital;
-						const accountInfo = { name: account.firstname, firstname: account.firstname, lastname: account.lastname, picture: account.picture, loginId: newLogin._id };
-						table.create(accountInfo, function (err3, newAccount) {
-							if (err3) throw err3;
+						if (changed) {
 							req.body.username = account.username;
 							req.body.password = account.password1;
 							next();
-						});
+						}
+						else res.json({ "success": false, "message": "Error while register.", "account": account });
 					});
 				}
 			});

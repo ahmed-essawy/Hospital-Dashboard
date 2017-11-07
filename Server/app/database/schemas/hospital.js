@@ -5,15 +5,15 @@ const config = require('../../config');
 
 const HospitalSchema = new Mongoose.Schema({
     name: { type: String, required: true },
-    picture: { type: String, default: config.LOGIN.DEFAULT_HOSPITAL_PICTURE },
-    loginId: { type: Mongoose.Schema.Types.ObjectId, required: true, index: { unique: true } },
+    picture: { type: String, default: config.ACCOUNT.DEFAULT_HOSPITAL_PICTURE },
+    login: { type: Mongoose.Schema.Types.ObjectId, required: true, ref: 'logins' },
     doctors: { type: [Mongoose.Schema.Types.ObjectId] },
     departments: { type: [String] },
     services: { type: [String] }
 });
 
 HospitalSchema.pre('save', function (next) {
-    if (!this.picture || this.picture === "null" || this.picture === "undefined" || this.picture === "") this.picture = config.LOGIN.DEFAULT_HOSPITAL_PICTURE;
+    if (!this.picture || this.picture === "null" || this.picture === "undefined" || this.picture === "") this.picture = config.ACCOUNT.DEFAULT_HOSPITAL_PICTURE;
     next();
 });
 

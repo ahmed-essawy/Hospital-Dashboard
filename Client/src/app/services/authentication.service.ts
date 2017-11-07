@@ -11,27 +11,11 @@ export class AuthenticationService {
   constructor(private http: HttpService) { }
 
   login(user: { username: string, password: string, remember: boolean }): Observable<any> {
-    return this.http.post(this.endPoint + 'login', user)
-      .map((response) => {
-        // login successful if there's a id in the response
-        if (response.success) {
-          localStorage.setItem('account', JSON.stringify(response.account));
-          return response.account;
-        }
-        return response;
-      });
+    return this.http.post(this.endPoint + 'login', user).map(this.saveLoginResponse);
   }
 
   signup(user: FormData): Observable<any> {
-    return this.http.post(this.endPoint + 'register', user)
-      .map((response) => {
-        // login successful if there's a id in the response
-        if (response.success) {
-          localStorage.setItem('account', JSON.stringify(response.account));
-          return response.account;
-        }
-        return response;
-      });
+    return this.http.post(this.endPoint + 'register', user).map(this.saveLoginResponse);
   }
 
   logout(): Observable<any> {
@@ -40,5 +24,23 @@ export class AuthenticationService {
         localStorage.removeItem('account');
         return response;
       });
+  }
+
+  saveLoginResponse(response) {
+    // login successful if there's a id in the response
+    if (response.success) {
+      let account = {
+        name: response.account.name || response.account.firstname + " " + response.account.lastname,
+        firstname: response.account.firstname,
+        lastname: response.account.lastname,
+        picture: response.account.picture,
+        email: response.email,
+        username: response.username,
+        token: response.token
+      };
+      localStorage.setItem('account', JSON.stringify(account));
+      return true;
+    }
+    return false;
   }
 }

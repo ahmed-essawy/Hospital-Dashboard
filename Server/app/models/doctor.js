@@ -4,26 +4,14 @@ const model = require('../database').Models.Doctor;
 
 const create = (data, callback) => { new model(data).save(callback) }
 
-const find = (data, callback) => { model.find(data, callback) }
+const find = (data, callback) => { model.find(data).populate('login', 'email username role').exec(callback) }
 
-const findOne = (data, callback) => { model.findOne(data, callback) }
+const findOne = (data, callback) => { model.findOne(data).populate('login', 'email username role').exec(callback) }
 
-const findById = (id, callback) => { model.findById(id, callback) }
-
-const findByLoginId = (id, callback) => { findOne({ loginId: id }, callback) }
+const findById = (id, callback) => { model.findById(id).populate('login', 'email username role').exec(callback) }
 
 const updateById = (id, newData, callback) => {
 	findById(id, (err, data) => {
-		if (err) throw err;
-		for (var i = 0, keys = Object.keys(newData); i < keys.length; ++i)
-			if (data._doc[keys[i]] && newData[keys[i]])
-				data[keys[i]] = newData[keys[i]];
-		data.save(callback);
-	})
-}
-
-const updateByLoginId = (id, newData, callback) => {
-	findByLoginId(id, (err, data) => {
 		if (err) throw err;
 		for (var i = 0, keys = Object.keys(newData); i < keys.length; ++i)
 			if (data._doc[keys[i]] && newData[keys[i]])
@@ -44,8 +32,6 @@ module.exports = {
 	find,
 	findOne,
 	findById,
-	findByLoginId,
 	updateById,
-	updateByLoginId,
 	removeById
 };

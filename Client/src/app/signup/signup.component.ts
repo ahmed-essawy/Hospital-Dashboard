@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
         }
         this.authenticationService.signup(formData)
             .subscribe(result => {
-                if (result.id) this.router.navigate(['/']);
+                if (result) this.router.navigate(['/']);
             });
     }
 }

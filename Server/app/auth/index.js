@@ -3,6 +3,7 @@
 const config = require('../config');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const jwt = require('jsonwebtoken');
 
 const Login = require('../models/login');
 const User = require('../models/user');
@@ -12,7 +13,7 @@ const Hospital = require('../models/hospital');
 const init = function () {
 
 	passport.serializeUser(function (login, done) {
-		done(null, login.id);
+		done(null, login._id);
 	});
 
 	passport.deserializeUser(function (id, done) {
@@ -31,32 +32,11 @@ const init = function () {
 				login.validatePassword(password, function (err, isMatch) {
 					if (err) return done(err);
 					if (!isMatch) return done(null, false, { message: 'Incorrect username or password.' });
-					login._doc.success = false;
-					let table = User;
-					if (login.role === 'doctor') table = Doctor;
-					else if (login.role === 'hospital') table = Hospital;
-					let account = { id: login._id, email: login.email, username: login.username, role: login.role };
-					delete login._doc.email;
-					delete login._doc.role;
-					delete login._doc.username;
 					delete login._doc.password;
-					table.findByLoginId(login._id, function (err2, response) {
-						if (err2) throw err2;
-						if (response) {
-							if (account.role === 'hospital') account.name = response.name;
-							else {
-								account.firstname = response.firstname;
-								account.lastname = response.lastname;
-							}
-							login._doc.success = true;
-							account.picture = response.picture;
-							account['accountId'] = response._id;
-							account.token = "";
-							login._doc.account = account;
-						}
+					login._doc.token = jwt.sign({ id: login._id, iat: Math.floor(Date.now() / 1000) - 30 }, config.APPLICATION.JWTOKENSECRET);
+					login._doc.success = true;
 
-						return done(null, login);
-					});
+					return done(null, login);
 				});
 			});
 		}

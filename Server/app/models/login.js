@@ -6,13 +6,41 @@ const doctorModel = require('../database').Models.Doctor;
 const hospitalModel = require('../database').Models.Hospital;
 
 
-const create = (data, callback) => { new loginModel(data).save(callback) }
+const create = (data, callback) => {
+	new loginModel(data).save((err, newLogin) => {
+		if (err) throw err;
+		let account = new userModel({
+			firstname: data.firstname,
+			lastname: data.lastname,
+			picture: data.picture,
+			login: newLogin
+		});
+		if (newLogin.role === 'doctors')
+			account = new doctorModel({
+				firstname: data.firstname,
+				lastname: data.lastname,
+				picture: data.picture,
+				login: newLogin
+			});
+		if (newLogin.role === 'hospitals')
+			account = new hospitalModel({
+				name: data.firstname,
+				picture: data.picture,
+				login: newLogin
+			});
+		account.save((err, newAccount) => {
+			if (err) throw err;
+			newLogin.account = newAccount;
+			newLogin.save(callback);
+		});
+	});
+}
 
-const find = (data, callback) => { loginModel.find(data, callback) }
+const find = (data, callback) => { loginModel.find(data).populate('account').exec(callback) }
 
-const findOne = (data, callback) => { loginModel.findOne(data, callback) }
+const findOne = (data, callback) => { loginModel.findOne(data).populate('account').exec(callback) }
 
-const findById = (id, callback) => { loginModel.findById(id, callback) }
+const findById = (id, callback) => { loginModel.findById(id).populate('account').exec(callback) }
 
 const updateById = (id, newData, callback) => {
 	findById(id, (err, data) => {
@@ -31,30 +59,6 @@ const removeById = (id, callback) => {
 	})
 }
 
-const isUser = (req, res, next) => {
-	userModel.findOne({ loginId: req.user._id }, (err, user) => {
-		if (err) throw err;
-		if (user && user.role === 'user') next();
-		else res.status(401).end();
-	});
-};
-
-const isDoctor = (req, res, next) => {
-	doctorModel.findOne({ loginId: req.user._id }, (err, doctor) => {
-		if (err) throw err;
-		if (doctor && doctor.role === 'doctor') next();
-		else res.status(401).end();
-	});
-};
-
-const isHospital = (req, res, next) => {
-	hospitalModel.findOne({ loginId: req.user._id }, (err, hospital) => {
-		if (err) throw err;
-		if (hospital && hospital.role === 'hospital') next();
-		else res.status(401).end();
-	});
-};
-
 const isAuthenticated = (req, res, next) => {
 	if (req.isAuthenticated()) next();
 	else res.status(401).end();
@@ -67,8 +71,5 @@ module.exports = {
 	findById,
 	updateById,
 	removeById,
-	isUser,
-	isDoctor,
-	isHospital,
 	isAuthenticated
 };

@@ -5,7 +5,6 @@ const exphbs = require('express-handlebars');
 const app = express();
 const server = require('http').Server(app);
 const bodyParser = require('body-parser');
-const flash = require('connect-flash');
 const cors = require('cors');
 
 // Application components
@@ -23,11 +22,11 @@ app.use(cors())
   .use(express.static('dist'))
   .use(session)
   .use(passport.initialize())
-  .use(passport.session())
-  .use(flash());
+  .use(passport.session());
 
 // API location
 app.use('/authenticate', routes.login);
+app.use(routes.isAuthenticated);
 app.use('/api/user', routes.user);
 app.use('/api/doctor', routes.doctor);
 app.use('/api/hospital', routes.hospital);
