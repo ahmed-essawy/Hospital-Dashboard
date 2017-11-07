@@ -25,7 +25,11 @@ const routes: Routes = [
             { path: 'material', loadChildren: './icons/material/material.module#MaterialComponentModule' },
             { path: 'basicform', loadChildren: './form/basic/basic.module#BasicFormModule' },
             { path: 'basictable', loadChildren: './table/basic/basic.module#BasicTableModule' },
-            { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' }            
+            { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
+            { path: 'doctors', loadChildren: './doctors/doctors.module#DoctorsModule' }, 
+            { path: 'doctorProfile/:id', loadChildren: './doctorProfile/doctorProfile.module#DoctorProfileModule' },
+            { path: 'hospitals', loadChildren: './hospitals/hospitals.module#HospitalsModule' },
+            { path: 'hospitalProfile', loadChildren: './hospitalProfile/hospitalProfile.module#HospitalProfileModule' }             
         ]
     }
 ];

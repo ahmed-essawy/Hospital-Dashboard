@@ -3,6 +3,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 const loginRequests = require('./login');
+const accountRequests = require('./account');
 const userRequests = require('./user');
 const doctorRequests = require('./doctor');
 const hospitalRequests = require('./hospital');
@@ -28,6 +29,7 @@ const isAuthenticated = (req, res, next) => {
 
 module.exports = {
 	login: loginRequests,
+	account: accountRequests,
 	user: userRequests,
 	doctor: doctorRequests,
 	hospital: hospitalRequests,

@@ -3,27 +3,16 @@
 const router = require('express').Router();
 
 const Login = require('../models/login');
-const Doctor = require('../models/doctor');
 
 router.get('/', function (req, res) {
-	Doctor.find({}, (err, doctors) => {
+	Login.findById(req.user.id, (err, loginAccount) => {
 		if (err) throw err;
-		res.json(doctors);
+		let response = loginAccount.account;
+		response._doc.email = loginAccount.email;
+		response._doc.username = loginAccount.username;
+		response._doc.role = loginAccount.role;
+		res.json(response);
 	})
-});
-
-router.get('/:id', function (req, res) {
-	Doctor.findById(req.params.id, (err, doctor) => {
-		if (err) throw err;
-		res.json(doctor);
-	})
-});
-
-router.post('/addReview', function (req, res, next) {
-	console.log(req.body);
-	// Doctor.findById(req.body._id, (err, doctor) => {
-	// 	if (err) throw err;
-	// })
 });
 
 router.put('/profile', function (req, res, next) {

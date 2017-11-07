@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+            <div class="input-group" id="adv-search">
+                <input type="text" class="form-control" placeholder="Search for hospital" />
+                <div class="input-group-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary"><span class="icon-magnifier"></span></button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+	</div>
+  <div class="row">
+<table class="table table-bordered">
+    <tbody>
+      <tr *ngFor="let hospital of hospitals">
+        <td>{{hospital.name}}</td>
+        <td><a class="btn btn-outline-info" [routerLink]="['/hospitalProfile', hospital]">Details</a></td>
+        <td><a class="btn btn-outline-success" [routerLink]="['/doctors']">Doctors</a></td>
+        <td><a class="btn btn-outline-success" [routerLink]="['/departments']">Departments</a></td>        
+        <td><a class="btn btn-outline-success" [routerLink]="['/services']">Services</a></td>
+      </tr> 
+    </tbody>
+  </table>
+</div>

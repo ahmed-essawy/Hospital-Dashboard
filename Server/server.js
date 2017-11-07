@@ -27,6 +27,7 @@ app.use(cors())
 // API location
 app.use('/authenticate', routes.login);
 app.use(routes.isAuthenticated);
+app.use('/api/account', routes.account);
 app.use('/api/user', routes.user);
 app.use('/api/doctor', routes.doctor);
 app.use('/api/hospital', routes.hospital);

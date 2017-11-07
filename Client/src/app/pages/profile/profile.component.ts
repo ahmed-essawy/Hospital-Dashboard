@@ -16,11 +16,16 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     hide = false;
     uploadPhoto = false;
     showEdit = false;
-    constructor(public router: Router, public domSanitizer: DomSanitizer, private http: HttpService) { }
+    constructor(public router: Router, public domSanitizer: DomSanitizer, private http: HttpService) {
+        this.user = {};
+    }
 
     ngOnInit() {
-        this.user = JSON.parse(localStorage.getItem('account'));
-        this.picture = this.domSanitizer.bypassSecurityTrustUrl(this.user.picture);
+        this.http.get('api/account').subscribe(account => {
+            this.user = account;
+            this.user.name = account.name || account.firstname + " " + account.lastname;
+            this.picture = this.domSanitizer.bypassSecurityTrustUrl(account.picture);
+        });
     }
 
     ngAfterViewInit() {
@@ -58,6 +63,11 @@ export class ProfileComponent implements OnInit, AfterViewInit {
             });;
 
     }
-
+    cancel() {
+        this.readOnly = true;
+        this.hide = true;
+        this.uploadPhoto = false;
+        this.showEdit = true;
+    }
 
 }
