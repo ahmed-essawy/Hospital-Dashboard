@@ -69,9 +69,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         this.authenticationService.logout()
             .subscribe(result => {
                 if (result.success) this.router.navigate(['/login']);
-                else {
-                    console.log(result);
-                }
             });
     }
 }

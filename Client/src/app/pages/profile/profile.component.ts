@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
                 formData.append(property, this.user[property]);
             }
         }
-        this.http.put('api/user/profile', formData)
+        this.http.put('api/account', formData)
             .subscribe(result => {
                 if (result.success) {
                     this.readOnly = true;
