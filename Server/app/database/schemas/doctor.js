@@ -8,9 +8,10 @@ const DoctorSchema = new Mongoose.Schema({
     lastname: { type: String },
     picture: { type: String, default: config.ACCOUNT.DEFAULT_DOCTOR_PICTURE },
     login: { type: Mongoose.Schema.Types.ObjectId, required: true, ref: 'logins' },
-    appointments: [{ userId: { type: Mongoose.Schema.Types.ObjectId }, appointment: { type: String } }],
-    reviews: [{ userId: { type: Mongoose.Schema.Types.ObjectId }, review: { type: String } }],
-    ratings: [{ userId: { type: Mongoose.Schema.Types.ObjectId }, rating: { type: Number } }]
+    hospital: { type: Mongoose.Schema.Types.ObjectId, ref: 'hospitals' },
+    appointments: [{ type: Mongoose.Schema.Types.ObjectId, ref: 'appointments' }],
+    reviews: [{ type: Mongoose.Schema.Types.ObjectId, ref: 'reviews' }],
+    ratings: [{ user: { type: Mongoose.Schema.Types.ObjectId, ref: 'ratings' } }]
 });
 
 DoctorSchema.pre('save', function (next) {

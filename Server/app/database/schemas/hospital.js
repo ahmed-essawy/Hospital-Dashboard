@@ -7,9 +7,9 @@ const HospitalSchema = new Mongoose.Schema({
     name: { type: String, required: true },
     picture: { type: String, default: config.ACCOUNT.DEFAULT_HOSPITAL_PICTURE },
     login: { type: Mongoose.Schema.Types.ObjectId, required: true, ref: 'logins' },
-    doctors: { type: [Mongoose.Schema.Types.ObjectId] },
-    departments: { type: [String] },
-    services: { type: [String] }
+    doctors: [{ type: Mongoose.Schema.Types.ObjectId, ref: 'doctors' }],
+    departments: [{ type: Mongoose.Schema.Types.ObjectId, ref: 'departments' }],
+    services: [{ type: Mongoose.Schema.Types.ObjectId, ref: 'services' }]
 });
 
 HospitalSchema.pre('save', function (next) {

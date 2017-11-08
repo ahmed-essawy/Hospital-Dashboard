@@ -31,6 +31,8 @@ app.use('/api/account', routes.account);
 app.use('/api/user', routes.user);
 app.use('/api/doctor', routes.doctor);
 app.use('/api/hospital', routes.hospital);
+app.use('/api/department', routes.department);
+app.use('/api/appointment', routes.appointment);
 
 server.listen(app.get('PORT'), function () {
   console.log('Server is listening at port %d', server.address().port);

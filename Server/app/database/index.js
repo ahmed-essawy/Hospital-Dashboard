@@ -21,9 +21,14 @@ Mongoose.Promise = global.Promise;
 module.exports = {
 	Mongoose,
 	Models: {
-		Login: require('./schemas/login.js'),
-		User: require('./schemas/user.js'),
+		Appointment: require('./schemas/appointment.js'),
+		Department: require('./schemas/department.js'),
 		Doctor: require('./schemas/doctor.js'),
-		Hospital: require('./schemas/hospital.js')
+		Hospital: require('./schemas/hospital.js'),
+		Login: require('./schemas/login.js'),
+		Rating: require('./schemas/rating.js'),
+		Review: require('./schemas/review.js'),
+		Service: require('./schemas/service.js'),
+		User: require('./schemas/user.js')
 	}
 };

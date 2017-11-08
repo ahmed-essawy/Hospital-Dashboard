@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 
-const Model = require('../models/hospital');
+const Model = require('../models/department');
 
 router.get('/', function (req, res) {
 	Model.find({}, (err, data) => {

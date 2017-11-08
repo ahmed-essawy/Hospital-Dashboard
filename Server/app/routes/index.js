@@ -7,6 +7,8 @@ const accountRequests = require('./account');
 const userRequests = require('./user');
 const doctorRequests = require('./doctor');
 const hospitalRequests = require('./hospital');
+const appointmentRequests = require('./appointment');
+const departmentRequests = require('./department');
 
 const isAuthenticated = (req, res, next) => {
 	let authorization = req.get('Authorization');
@@ -33,5 +35,7 @@ module.exports = {
 	user: userRequests,
 	doctor: doctorRequests,
 	hospital: hospitalRequests,
+	appointment: appointmentRequests,
+	department: departmentRequests,
 	isAuthenticated
 };
