@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express');
-const exphbs = require('express-handlebars');
 const app = express();
 const server = require('http').Server(app);
 const bodyParser = require('body-parser');

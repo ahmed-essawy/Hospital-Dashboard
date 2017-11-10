@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { PageComponent } from './pages.component';
+import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 
 const routes: Routes = [
     {
@@ -26,13 +28,16 @@ const routes: Routes = [
             { path: 'basicform', loadChildren: './form/basic/basic.module#BasicFormModule' },
             { path: 'basictable', loadChildren: './table/basic/basic.module#BasicTableModule' },
             { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
-            { path: 'doctors', loadChildren: './doctors/doctors.module#DoctorsModule' }, 
-            { path: 'doctor-profile/:id', loadChildren: './doctor-profile/doctor-profile.module#DoctorProfileModule' },
+            { path: 'doctors', loadChildren: './doctors/doctors.module#DoctorsModule' },
+            {
+                path: 'doctor-profile/:id', component: DoctorProfileComponent,
+                data: { title: 'Doctor Profile Page', urls: [{ title: 'Dashboard', url: '/' }, { title: 'Doctor Profile Page' }] }
+            },
             { path: 'hospitals', loadChildren: './hospitals/hospitals.module#HospitalsModule' },
             { path: 'hospital-profile/:id', loadChildren: './hospital-profile/hospital-profile.module#HospitalProfileModule' },
-            { path: 'view-user-appointment/:id', loadChildren: './view-user-appointment/view-user-appointment.module#ViewUserAppointmentModule' },             
+            { path: 'view-user-appointment/:id', loadChildren: './view-user-appointment/view-user-appointment.module#ViewUserAppointmentModule' },
             { path: 'user-appointments', loadChildren: './user-appointments/user-appointments.module#UserAppointmentsModule' }
-            
+
         ]
     }
 ];
