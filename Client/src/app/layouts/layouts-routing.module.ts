@@ -17,7 +17,9 @@ const routes: Routes = [
                 path: 'dashboard', component: DashboardComponent,
                 data: { title: 'Dashboard', urls: [{ title: 'Dashboard', url: '/' }] }
             },
-            { path: 'user', loadChildren: './user/user.module#UserModule' }
+            { path: '', loadChildren: './user/user.module#UserModule' },
+            { path: 'doctor', loadChildren: './doctor/doctor.module#DoctorModule' },
+            { path: 'hospital', loadChildren: './hospital/hospital.module#HospitalModule' }
         ]
     }
 ];

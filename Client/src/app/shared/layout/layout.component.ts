@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpService } from '../../services/http.service';
 
 @Component({
     selector: 'app-layout',
@@ -8,16 +7,12 @@ import { HttpService } from '../../services/http.service';
     styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-    currentAccount = {};
 
-    constructor(public router: Router, private http: HttpService) { }
+    constructor(public router: Router) { }
 
     ngOnInit() {
         if (this.router.url === '/') {
             this.router.navigate(['/dashboard']);
         }
-        // Wrong logic
-        this.currentAccount = this.http.get('api/account');
     }
-
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthenticationService } from '../../services/authentication.service';
+import { HttpService } from '../../services/http.service';
 
 @Component({
     selector: 'ap-sidebar',
@@ -9,15 +10,13 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class SidebarComponent implements OnInit, AfterViewInit {
     private user: { name: string, picture: any, role: string };
-    @Input('account') accountMethod;
 
-    constructor(public router: Router, public domSanitizer: DomSanitizer, private authenticationService: AuthenticationService) {
+    constructor(public router: Router, public domSanitizer: DomSanitizer, private authenticationService: AuthenticationService, private http: HttpService) {
         this.user = { name: "", picture: "", role: "" };
     }
 
     ngOnInit() {
-        // Wrong logic
-        this.accountMethod.subscribe(account => {
+        this.http.get('api/account').subscribe(account => {
             this.user = {
                 name: account.name || account.firstname + " " + account.lastname,
                 picture: this.domSanitizer.bypassSecurityTrustUrl(account.picture),

@@ -5,7 +5,7 @@ import { HospitalComponent } from './hospital.component';
 
 const routes: Routes = [
     {
-        path: 'hospital', component: HospitalComponent,
+        path: '', component: HospitalComponent,
         children: []
     }
 ];
