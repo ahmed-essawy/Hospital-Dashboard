@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-user',
+    template: ''
 })
 export class UserComponent implements OnInit {
     constructor(public router: Router) { }

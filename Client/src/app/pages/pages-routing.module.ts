@@ -27,7 +27,6 @@ const routes: Routes = [
             { path: 'material', loadChildren: './icons/material/material.module#MaterialComponentModule' },
             { path: 'basicform', loadChildren: './form/basic/basic.module#BasicFormModule' },
             { path: 'basictable', loadChildren: './table/basic/basic.module#BasicTableModule' },
-            { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
             { path: 'doctors', loadChildren: './doctors/doctors.module#DoctorsModule' },
             {
                 path: 'doctor-profile/:id', component: DoctorProfileComponent,
