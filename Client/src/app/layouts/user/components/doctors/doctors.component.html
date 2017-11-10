@@ -20,7 +20,7 @@
       <tr *ngFor="let doctor of doctors">
         <td>{{doctor.firstname}} {{doctor.lastname}}</td>
         <td>
-          <a class="btn btn-outline-info" [routerLink]="['/doctor-profile',doctor._id]">View Profile</a>
+          <a class="btn btn-outline-info" [routerLink]="['/doctor', doctor._id]">View Profile</a>
         </td>
         <td>
           <a class="btn btn-outline-success" data-toggle="modal" data-target="#reserveModal">Reserve Appointment</a>

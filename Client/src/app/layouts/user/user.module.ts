@@ -5,7 +5,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
+import { AppointmentComponent } from './components/appointment/appointment.component';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
+import { DoctorComponent } from './components/doctor/doctor.component';
 import { DoctorsComponent } from './components/doctors/doctors.component';
+import { HospitalComponent } from './components/hospital/hospital.component';
+import { HospitalsComponent } from './components/hospitals/hospitals.component';
 
 @NgModule({
     imports: [
@@ -14,6 +19,14 @@ import { DoctorsComponent } from './components/doctors/doctors.component';
         NgbModule,
         UserRoutingModule
     ],
-    declarations: [UserComponent, DoctorsComponent]
+    declarations: [
+        UserComponent,
+        AppointmentComponent,
+        AppointmentsComponent,
+        DoctorComponent,
+        DoctorsComponent,
+        HospitalComponent,
+        HospitalsComponent
+    ]
 })
 export class UserModule { }

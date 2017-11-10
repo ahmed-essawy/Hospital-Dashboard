@@ -17,7 +17,7 @@
     <tbody>
       <tr *ngFor="let hospital of hospitals">
         <td>{{hospital.name}}</td>
-        <td><a class="btn btn-outline-info" [routerLink]="['/hospital-profile', hospital._id]">Details</a></td>
+        <td><a class="btn btn-outline-info" [routerLink]="['/hospital', hospital._id]">Details</a></td>
         <td><a class="btn btn-outline-success" [routerLink]="['/']">Doctors</a></td>
         <td><a class="btn btn-outline-success" [routerLink]="['/']">Departments</a></td>        
         <td><a class="btn btn-outline-success" [routerLink]="['/']">Services</a></td>

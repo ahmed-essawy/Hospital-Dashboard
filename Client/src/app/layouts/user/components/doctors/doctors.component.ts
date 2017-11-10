@@ -7,7 +7,7 @@ import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
-    selector: 'app-doctors',
+    selector: 'app-user-doctors',
     templateUrl: './doctors.component.html',
     styleUrls: ['./doctors.component.css']
 })

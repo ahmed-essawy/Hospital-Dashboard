@@ -48,12 +48,6 @@
       <ul id="sidebarnav">
         <li class="nav-devider"></li>
         <li class="nav-small-cap">MENU</li>
-        <li>
-          <a routerLink="/starter" [routerLinkActive]="['router-link-active']">
-            <i class="icon-speedometer"></i>
-            <span class="hide-menu">Starter Page</span>
-          </a>
-        </li>
         <li *ngIf="user.role === 'users'">
           <a routerLink="/doctors" [routerLinkActive]="['router-link-active']">
             <i class="fa fa-user-md"></i>
@@ -67,7 +61,7 @@
           </a>
         </li>
         <li *ngIf="user.role === 'users'">
-          <a routerLink="/user-appointments" [routerLinkActive]="['router-link-active']">
+          <a routerLink="/appointments" [routerLinkActive]="['router-link-active']">
             <i class="fa  fa-book"></i>
             <span class="hide-menu">Appointments</span>
           </a>
@@ -79,54 +73,54 @@
           </a>
           <ul aria-expanded="false" class="collapse">
             <li>
-              <a routerLink="/accordion" [routerLinkActive]="['router-link-active']">Accordion</a>
+              <a routerLink="/pages/accordion" [routerLinkActive]="['router-link-active']">Accordion</a>
             </li>
             <li>
-              <a routerLink="/alert" [routerLinkActive]="['router-link-active']">Alert</a>
+              <a routerLink="/pages/alert" [routerLinkActive]="['router-link-active']">Alert</a>
             </li>
             <li>
-              <a routerLink="/carousel" [routerLinkActive]="['router-link-active']">Carousel</a>
+              <a routerLink="/pages/carousel" [routerLinkActive]="['router-link-active']">Carousel</a>
             </li>
             <li>
-              <a routerLink="/datepicker" [routerLinkActive]="['router-link-active']">Datepicker</a>
+              <a routerLink="/pages/datepicker" [routerLinkActive]="['router-link-active']">Datepicker</a>
             </li>
             <li>
-              <a routerLink="/dropdown" [routerLinkActive]="['router-link-active']">Dropdown - Collapse</a>
+              <a routerLink="/pages/dropdown" [routerLinkActive]="['router-link-active']">Dropdown - Collapse</a>
             </li>
             <li>
-              <a routerLink="/modal" [routerLinkActive]="['router-link-active']">Modal</a>
+              <a routerLink="/pages/modal" [routerLinkActive]="['router-link-active']">Modal</a>
             </li>
             <li>
-              <a routerLink="/pagination" [routerLinkActive]="['router-link-active']">Pagination</a>
+              <a routerLink="/pages/pagination" [routerLinkActive]="['router-link-active']">Pagination</a>
             </li>
             <li>
-              <a routerLink="/poptool" [routerLinkActive]="['router-link-active']">Popover & Tooltip</a>
+              <a routerLink="/pages/poptool" [routerLinkActive]="['router-link-active']">Popover & Tooltip</a>
             </li>
             <li>
-              <a routerLink="/progressbar" [routerLinkActive]="['router-link-active']">Progressbar</a>
+              <a routerLink="/pages/progressbar" [routerLinkActive]="['router-link-active']">Progressbar</a>
             </li>
             <li>
-              <a routerLink="/rating" [routerLinkActive]="['router-link-active']">Ratings</a>
+              <a routerLink="/pages/rating" [routerLinkActive]="['router-link-active']">Ratings</a>
             </li>
             <li>
-              <a routerLink="/tabs" [routerLinkActive]="['router-link-active']">Tabs</a>
+              <a routerLink="/pages/tabs" [routerLinkActive]="['router-link-active']">Tabs</a>
             </li>
             <li>
-              <a routerLink="/timepicker" [routerLinkActive]="['router-link-active']">Timepicker</a>
+              <a routerLink="/pages/timepicker" [routerLinkActive]="['router-link-active']">Timepicker</a>
             </li>
             <li>
-              <a routerLink="/typehead" [routerLinkActive]="['router-link-active']">Typehead</a>
+              <a routerLink="/pages/typehead" [routerLinkActive]="['router-link-active']">Typehead</a>
             </li>
           </ul>
         </li>
         <li>
-          <a routerLink="/basicform" [routerLinkActive]="['router-link-active']">
+          <a routerLink="/pages/basicform" [routerLinkActive]="['router-link-active']">
             <i class="icon-doc"></i>
             <span class="hide-menu">Forms</span>
           </a>
         </li>
         <li>
-          <a routerLink="/basictable" [routerLinkActive]="['router-link-active']">
+          <a routerLink="/pages/basictable" [routerLinkActive]="['router-link-active']">
             <i class="icon-docs"></i>
             <span class="hide-menu">Tables</span>
           </a>
@@ -138,13 +132,13 @@
           </a>
           <ul aria-expanded="false" class="collapse">
             <li>
-              <a routerLink="/fontawesome" [routerLinkActive]="['router-link-active']">Fontawesome</a>
+              <a routerLink="/pages/fontawesome" [routerLinkActive]="['router-link-active']">Fontawesome</a>
             </li>
             <li>
-              <a routerLink="/simpleline" [routerLinkActive]="['router-link-active']">Simple Line Icons</a>
+              <a routerLink="/pages/simpleline" [routerLinkActive]="['router-link-active']">Simple Line Icons</a>
             </li>
             <li>
-              <a routerLink="/material" [routerLinkActive]="['router-link-active']">Material Icons</a>
+              <a routerLink="/pages/material" [routerLinkActive]="['router-link-active']">Material Icons</a>
             </li>
           </ul>
         </li>

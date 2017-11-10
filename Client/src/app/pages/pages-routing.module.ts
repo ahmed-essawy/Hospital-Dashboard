@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PageComponent } from './pages.component';
-import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 
 const routes: Routes = [
     {
@@ -26,16 +25,7 @@ const routes: Routes = [
             { path: 'simpleline', loadChildren: './icons/simpleline/simpleline.module#SimplelineIconModule' },
             { path: 'material', loadChildren: './icons/material/material.module#MaterialComponentModule' },
             { path: 'basicform', loadChildren: './form/basic/basic.module#BasicFormModule' },
-            { path: 'basictable', loadChildren: './table/basic/basic.module#BasicTableModule' },
-            { path: 'doctors', loadChildren: './doctors/doctors.module#DoctorsModule' },
-            {
-                path: 'doctor-profile/:id', component: DoctorProfileComponent,
-                data: { title: 'Doctor Profile Page', urls: [{ title: 'Dashboard', url: '/' }, { title: 'Doctor Profile Page' }] }
-            },
-            { path: 'hospitals', loadChildren: './hospitals/hospitals.module#HospitalsModule' },
-            { path: 'hospital-profile/:id', loadChildren: './hospital-profile/hospital-profile.module#HospitalProfileModule' },
-            { path: 'view-user-appointment/:id', loadChildren: './view-user-appointment/view-user-appointment.module#ViewUserAppointmentModule' },
-            { path: 'user-appointments', loadChildren: './user-appointments/user-appointments.module#UserAppointmentsModule' }
+            { path: 'basictable', loadChildren: './table/basic/basic.module#BasicTableModule' }
 
         ]
     }

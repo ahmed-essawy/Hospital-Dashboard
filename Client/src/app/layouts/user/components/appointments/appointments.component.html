@@ -1,10 +1,10 @@
 <div class="row">
   <table class="table table-bordered">
     <tbody>
-      <tr *ngFor="let appointments of user.appointments">
-        <td>{{appointments.date}}</td>
+      <tr *ngFor="let appointment of user.appointments">
+        <td>{{appointment.date}}</td>
         <td>
-          <a class="btn btn-outline-success" [routerLink]="['/view-user-appointment',appointments._id]">View Details</a>
+          <a class="btn btn-outline-success" [routerLink]="['/appointment', appointment._id]">View Details</a>
         </td>
         <td>
           <a class="btn btn-outline-success" (click)="edit()">Edit</a>

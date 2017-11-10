@@ -1,15 +1,15 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { HttpService } from '../../services/http.service';
+import { HttpService } from '../../../../services/http.service';
 
 
 @Component({
-    selector: 'app-doctor-profile',
-    templateUrl: './doctor-profile.component.html',
-    styleUrls: ['./doctor-profile.component.css']
+    selector: 'app-user-doctor',
+    templateUrl: './doctor.component.html',
+    styleUrls: ['./doctor.component.css']
 })
-export class DoctorProfileComponent implements OnInit, AfterViewInit {
+export class DoctorComponent implements OnInit, AfterViewInit {
     doctor;
     // picture;
 

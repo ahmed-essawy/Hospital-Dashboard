@@ -1,31 +1,31 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { HttpService } from '../../services/http.service';
+import { HttpService } from '../../../../services/http.service';
 
 
 @Component({
-    selector: 'app-view-user-appointment',
-    templateUrl: './view-user-appointment.component.html',
-    styleUrls: ['./view-user-appointment.component.css']
+    selector: 'app-user-appointment',
+    templateUrl: './appointment.component.html',
+    styleUrls: ['./appointment.component.css']
 })
-export class ViewUserAppointmentComponent implements OnInit, AfterViewInit {
+export class AppointmentComponent implements OnInit, AfterViewInit {
     appointment;
     newReview;
 
     constructor(public router: Router, public routerActivated: ActivatedRoute
         , public domSanitizer: DomSanitizer, private http: HttpService) {
-           
+
 
     }
 
     ngOnInit() {
         this.routerActivated.params
-        .subscribe((appointmentId) => {
-            this.http.get('api/appointment/' + appointmentId.id).subscribe(appointment => {
-                this.appointment = appointment
+            .subscribe((appointmentId) => {
+                this.http.get('api/appointment/' + appointmentId.id).subscribe(appointment => {
+                    this.appointment = appointment
+                });
             });
-        });
 
     }
 

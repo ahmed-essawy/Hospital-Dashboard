@@ -1,11 +1,11 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { HttpService } from '../../services/http.service';
+import { HttpService } from '../../../../services/http.service';
 
 
 @Component({
-    selector: 'app-hospitals',
+    selector: 'app-user-hospitals',
     templateUrl: './hospitals.component.html',
     styleUrls: ['./hospitals.component.css']
 })
