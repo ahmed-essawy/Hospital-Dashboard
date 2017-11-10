@@ -27,9 +27,12 @@ const routes: Routes = [
             { path: 'basictable', loadChildren: './table/basic/basic.module#BasicTableModule' },
             { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
             { path: 'doctors', loadChildren: './doctors/doctors.module#DoctorsModule' }, 
-            { path: 'doctorProfile/:id', loadChildren: './doctorProfile/doctorProfile.module#DoctorProfileModule' },
+            { path: 'doctor-profile/:id', loadChildren: './doctor-profile/doctor-profile.module#DoctorProfileModule' },
             { path: 'hospitals', loadChildren: './hospitals/hospitals.module#HospitalsModule' },
-            { path: 'hospitalProfile', loadChildren: './hospitalProfile/hospitalProfile.module#HospitalProfileModule' }             
+            { path: 'hospital-profile/:id', loadChildren: './hospital-profile/hospital-profile.module#HospitalProfileModule' },
+            { path: 'view-user-appointment/:id', loadChildren: './view-user-appointment/view-user-appointment.module#ViewUserAppointmentModule' },             
+            { path: 'user-appointments', loadChildren: './user-appointments/user-appointments.module#UserAppointmentsModule' }
+            
         ]
     }
 ];

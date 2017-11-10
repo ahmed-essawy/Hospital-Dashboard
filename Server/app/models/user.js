@@ -10,6 +10,8 @@ const findOne = (data, callback) => { model.findOne(data).populate('login', 'ema
 
 const findById = (id, callback) => { model.findById(id).populate('login', 'email username role').populate('favorites', 'firstname lastname picture').populate('appointments').populate('favorites.hospital').exec(callback) }
 
+const findByLoginId = (id, callback) => { find({ login: id }, callback) }
+
 const updateById = (id, newData, callback) => {
 	findById(id, (err, data) => {
 		if (err) throw err;
@@ -48,6 +50,7 @@ module.exports = {
 	find,
 	findOne,
 	findById,
+	findByLoginId,
 	updateById,
 	removeById,
 	addAppointment,

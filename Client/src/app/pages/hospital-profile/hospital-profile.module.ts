@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HospitalProfileComponent } from './hospitalProfile.component';
+import { HospitalProfileComponent } from './hospital-profile.component';
 
 const routes: Routes = [{
     path: '',

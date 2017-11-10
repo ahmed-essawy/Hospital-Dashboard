@@ -14,7 +14,7 @@ export class HospitalsComponent implements OnInit, AfterViewInit {
     hospital;
 
     constructor(public router: Router, public domSanitizer: DomSanitizer, private http: HttpService) {
-        this.http.get('api/user/hospitals')
+        this.http.get('api/hospital')
             .subscribe(result => {
                     this.hospitals=result
                     console.log(this.hospitals);

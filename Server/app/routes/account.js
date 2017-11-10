@@ -5,7 +5,7 @@ const router = require('express').Router();
 const Login = require('../models/login');
 
 router.get('/', function (req, res) {
-	Login.findById(req.user.id, (err, loginAccount) => {
+	Login.findById(req.user.loginId, (err, loginAccount) => {
 		if (err) throw err;
 		let response = loginAccount.account;
 		response._doc.email = loginAccount.email;

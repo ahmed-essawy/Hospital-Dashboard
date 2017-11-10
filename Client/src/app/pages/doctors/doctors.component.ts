@@ -1,7 +1,9 @@
-import { Component, OnInit, AfterViewInit,Output } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpService } from '../../services/http.service';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import {NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -12,18 +14,24 @@ import { HttpService } from '../../services/http.service';
 
 export class DoctorsComponent implements OnInit, AfterViewInit {
     doctors;
-   // @Output()
     doctor;
+    model: NgbDateStruct;
+    time : NgbTimeStruct;
+    meridian = true;
+
+    toggleMeridian() {
+        this.meridian = !this.meridian;
+    }
+
 
     constructor(public router: Router, public domSanitizer: DomSanitizer, private http: HttpService) {
         this.http.get('api/doctor')
             .subscribe(result => {
-                    this.doctors=result
+                this.doctors = result
             });
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
-    ngAfterViewInit() {}
-
+    ngAfterViewInit() { }
 }

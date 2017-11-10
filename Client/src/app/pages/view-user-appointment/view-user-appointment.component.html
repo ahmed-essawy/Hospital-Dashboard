@@ -1,13 +1,9 @@
-
-<form class="form-horizontal form-material">
-  <div class="form-group row">
-    <div class="col-md-12 text-center">
-      <img class="img-thumbnail" [src]="picture">
+  <div class="form-group">
+      <div class="row">
+        <p>{{appointment.date}}</p>
+      </div>
     </div>
-  </div>
-  <div class="form-group row text-center">
-    <h2 class="col-md-12">{{doctor.firstname}} {{doctor.lastname}}</h2>
-  </div>
+<form class="form-horizontal form-material">
   <div class="container text-right">
     <div class="row">
       <div class="col-lg-12">
@@ -20,11 +16,6 @@
           <input type="hidden" name="starRates" class="rating-value" value="2.56">
         </div>
       </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <div *ngFor="let reviews of doctor.reviews" class="row">
-      <p>{{reviews.review}}</p>
     </div>
   </div>
   <div class="form-group">

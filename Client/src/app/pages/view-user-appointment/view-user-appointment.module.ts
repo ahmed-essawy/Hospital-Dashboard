@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DoctorsComponent } from './doctors.component';
+
+import { ViewUserAppointmentComponent } from './view-user-appointment.component';
 
 const routes: Routes = [{
     path: '',
     data: {
-        title: 'Doctors Page',
-        urls: [{ title: 'Dashboard', url: '/' }, { title: 'Doctors Page' }]
+        title: 'View User Appointment Page',
+        urls: [{ title: 'Dashboard', url: '/' }, { title: 'View User Appointment Page' }]
     },
-    component: DoctorsComponent
+    component: ViewUserAppointmentComponent
 }];
 
 
@@ -19,9 +19,8 @@ const routes: Routes = [{
     imports: [
         FormsModule,
         CommonModule,
-        NgbModule.forRoot(),
         RouterModule.forChild(routes)
     ],
-    declarations: [DoctorsComponent]
+    declarations: [ViewUserAppointmentComponent]
 })
-export class DoctorsModule { }
+export class ViewUserAppointmentModule { }

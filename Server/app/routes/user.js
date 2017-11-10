@@ -12,7 +12,7 @@ router.get('/:id', function (req, res) {
 });
 
 router.post('/favorite', function (req, res, next) {
-	Model.addFavorite(req.user.id, req.body.id, (err, data) => {
+	Model.addFavorite(req.user.id, req.body._id, (err, data) => {
 		if (err) throw err;
 		res.json(data);
 	});

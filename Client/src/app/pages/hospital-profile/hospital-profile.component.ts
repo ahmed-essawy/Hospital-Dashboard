@@ -5,13 +5,13 @@ import { HttpService } from '../../services/http.service';
 
 
 @Component({
-    selector: 'app-hospitalProfile',
-    templateUrl: './hospitalProfile.component.html',
-    styleUrls: ['./hospitalProfile.component.css']
+    selector: 'app-hospital-profile',
+    templateUrl: './hospital-profile.component.html',
+    styleUrls: ['./hospital-profile.component.css']
 })
 export class HospitalProfileComponent implements OnInit, AfterViewInit {
     hospital;
-    picture;
+    //picture;
     user;
     private sub: any;
 
@@ -21,9 +21,12 @@ export class HospitalProfileComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.routerActivated.params
-        .subscribe((hospital) => this.hospital = hospital);
-        console.log(this.hospital);
-        this.picture = this.domSanitizer.bypassSecurityTrustUrl(this.hospital.picture)
+        .subscribe((hospitalId) => {
+            this.http.get('api/hospital/' + hospitalId.id).subscribe(hospital => {
+                this.hospital = hospital
+            });
+        });
+    //this.picture = this.domSanitizer.bypassSecurityTrustUrl(this.hospital.picture)
         
     }
 

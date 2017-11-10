@@ -33,7 +33,7 @@ const init = function () {
 					if (err) return done(err);
 					if (!isMatch) return done(null, false, { message: 'Incorrect username or password.' });
 					delete login._doc.password;
-					login._doc.token = jwt.sign({ id: login._id, iat: Math.floor(Date.now() / 1000) - 30 }, config.APPLICATION.JWTOKENSECRET);
+					login._doc.token = jwt.sign({ id: login.account._id, loginId: login._id, iat: Math.floor(Date.now() / 1000) - 30 }, config.APPLICATION.JWTOKENSECRET);
 					login._doc.success = true;
 
 					return done(null, login);
